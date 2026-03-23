@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#FFA500"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-96x96.png">
+  <link rel="mask-icon" href="/blog/images/favicon.svg" color="#FFA500">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sigmar:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leony34.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"kimbie-light","dark":"kimbie-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js" defer></script>
+
+    <meta name="description" content="原题链接CF7E Defining Macros 这个黑题感觉好像不是很黑  1.理解题意  输入 n 个 #define 语句，然后给一个表达式，让你判断该表达式是不是 ‘Suspicious’ 的。 ‘Suspicious’ 的定义是某一个 #define 定义的东西被拆开来了。   如：  123#define haha ha+ha#define p haha-hahap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solution - CF7E Defining Macros">
+<meta property="og:url" content="http://leony34.github.io/blog/2021/12/26/CF7E/index.html">
+<meta property="og:site_name" content="Welcome to My Blog!">
+<meta property="og:description" content="原题链接CF7E Defining Macros 这个黑题感觉好像不是很黑  1.理解题意  输入 n 个 #define 语句，然后给一个表达式，让你判断该表达式是不是 ‘Suspicious’ 的。 ‘Suspicious’ 的定义是某一个 #define 定义的东西被拆开来了。   如：  123#define haha ha+ha#define p haha-hahap">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-26T07:07:07.000Z">
+<meta property="article:modified_time" content="2026-03-23T04:41:39.479Z">
+<meta property="article:author" content="CleverL">
+<meta property="article:tag" content="CodeForces">
+<meta property="article:tag" content="Luogu">
+<meta property="article:tag" content="Solution">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://leony34.github.io/blog/2021/12/26/CF7E/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://leony34.github.io/blog/2021/12/26/CF7E/","path":"2021/12/26/CF7E/","title":"Solution - CF7E Defining Macros"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Solution - CF7E Defining Macros | Welcome to My Blog!</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/blog/js/utils.js" defer></script><script src="/blog/js/motion.js" defer></script><script src="/blog/js/sidebar.js" defer></script><script src="/blog/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/blog/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/blog/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/blog/js/third-party/math/katex.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Welcome to My Blog!</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">this is a website</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa-solid fa-house fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa-solid fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-posts"><a href="/blog/archives" rel="section"><i class="fa-solid fa-file-lines fa-fw"></i>posts</a></li><li class="menu-item menu-item-codes"><a href="/blog/downloads/code" rel="section"><i class="fa-solid fa-code fa-fw"></i>codes</a></li><li class="menu-item menu-item-my-main-page"><a href="https://leony34.github.io/" rel="section"><i class="fa-solid fa-earth-asia fa-fw"></i>my main page</a></li><li class="menu-item menu-item-talk"><a href="/blog/talk/" rel="section"><i class="fa fa-comments fa-fw"></i>talk</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E7%90%86%E8%A7%A3%E9%A2%98%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text"> 1.理解题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text"> 2.思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E5%85%A8%E8%A7%A3%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text"> 3.全解代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CleverL</p>
+  <div class="site-description" itemprop="description">Life is like a box of chocolates.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://leony34.github.io/blog/2021/12/26/CF7E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="CleverL">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to My Blog!">
+      <meta itemprop="description" content="Life is like a box of chocolates.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Solution - CF7E Defining Macros | Welcome to My Blog!">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Solution - CF7E Defining Macros
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-12-26 15:07:07" itemprop="dateCreated datePublished" datetime="2021-12-26T15:07:07+08:00">2021-12-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-23 12:41:39" itemprop="dateModified" datetime="2026-03-23T12:41:39+08:00">2026-03-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>原题链接<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF7E">CF7E Defining Macros</a></p>
+<p><s>这个黑题感觉好像不是很黑</s></p>
+<h2 id="1理解题意"><a class="markdownIt-Anchor" href="#1理解题意"></a> 1.理解题意</h2>
+<blockquote>
+<p>输入 <strong>n</strong> 个 <strong>#define</strong> 语句，然后给一个表达式，让你判断该表达式是不是 <strong>‘Suspicious’</strong> 的。 <strong>‘Suspicious’</strong> 的定义是某一个 <strong>#define</strong> 定义的东西被拆开来了。</p>
+</blockquote>
+<blockquote>
+<p>如：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define haha ha+ha</span><br><span class="line">#define p haha-haha</span><br><span class="line">p</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<blockquote>
+<p>这是 <strong>‘Suspicious’</strong> 的，因为第二个haha被拆开了。本来是：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> (ha+ha)-(ha+ha)</span><br><span class="line">= ha+ha - ha-ha</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>现在是：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ha+ha-ha+ha</span><br></pre></td></tr></table></figure>
+<h2 id="2思路"><a class="markdownIt-Anchor" href="#2思路"></a> 2.思路</h2>
+<blockquote>
+<p>对于一个表达式，在括号外面的最低级的运算符就是该表达式的优先级。比如说 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>z</mi><mi mathvariant="normal">/</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">( x + y ) * z / p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord">/</span><span class="mord mathnormal">p</span></span></span></span> 的优先级就是 $ * $ 或者 $ / $ 。</p>
+</blockquote>
+<blockquote>
+<p>我们把全在运算符括号里面（或者没有运算符）的表达式记为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 级， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo></mrow><annotation encoding="application/x-tex">+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">+</span></span></span></span> 或者 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 级， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∗</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord">∗</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 级。</p>
+</blockquote>
+<blockquote>
+<p>不难发现， <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 级的表达式是不可能被拆分的。</p>
+</blockquote>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 级的表达式的前面有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∗</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord">∗</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span></span></span></span> 会被干掉  或者  后面有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∗</mo></mrow><annotation encoding="application/x-tex">*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord">∗</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span></span></span></span> 会被干掉。</p>
+</blockquote>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 级的表达式的前面有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">/</span></span></span></span> 才会被干掉。</p>
+</blockquote>
+<blockquote>
+<p><strong>注意：这里的“有”指直接相邻。</strong></p>
+</blockquote>
+<blockquote>
+<p>所以我们可以先 <strong>预处理出所有表达式的优先级</strong> ，然后我们惊奇地发现，所有表达式之间的调用关系为 <strong>一张有向无环图！</strong></p>
+</blockquote>
+<blockquote>
+<p>所以我们可以从调用方到被调用方都连上边，然后愉快地<strong>DFS</strong> 。</p>
+</blockquote>
+<blockquote>
+<p>然后就好了。</p>
+</blockquote>
+<h2 id="3全解代码"><a class="markdownIt-Anchor" href="#3全解代码"></a> 3.全解代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">110</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">isCH</span><span class="params">(<span class="type">char</span> ch)</span></span>&#123; <span class="keyword">return</span> ch&gt;=<span class="string">&#x27;A&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;Z&#x27;</span>||ch&gt;=<span class="string">&#x27;a&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;z&#x27;</span>; &#125;<span class="comment">//判断是否为字母 </span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span><span class="comment">//输入一个数字 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> num=<span class="number">0</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>) ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>) num=(num&lt;&lt;<span class="number">1</span>)+(num&lt;&lt;<span class="number">3</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">getdef</span><span class="params">()</span><span class="comment">//把没用的#define过掉 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (ch!=<span class="string">&#x27;#&#x27;</span>) ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (ch!=<span class="string">&#x27;d&#x27;</span>) ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (ch&gt;=<span class="string">&#x27;a&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;z&#x27;</span>) ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> string <span class="title">getS</span><span class="params">()</span><span class="comment">//输入一个连续的字母串 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> ch=<span class="built_in">getchar</span>();string s=<span class="string">&quot;&quot;</span>;</span><br><span class="line">	<span class="keyword">while</span> (ch==<span class="string">&#x27; &#x27;</span>) ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (ch!=<span class="string">&#x27; &#x27;</span>)	s+=ch,ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> string <span class="title">getL</span><span class="params">()</span><span class="comment">//输入整行 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> ch=<span class="built_in">getchar</span>();string s=<span class="string">&quot;&quot;</span>;</span><br><span class="line">	<span class="keyword">while</span> (ch!=<span class="string">&#x27;\n&#x27;</span>&amp;&amp;ch!=EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (ch!=<span class="string">&#x27; &#x27;</span>) s+=ch;<span class="comment">//去除空格 </span></span><br><span class="line">		ch=<span class="built_in">getchar</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">put</span><span class="params">(string s)</span></span>&#123; <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">length</span>();++i)<span class="built_in">putchar</span>(s[i]);<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>); &#125;<span class="comment">//输出一个字符串（供调试用） </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//以上为手写输入输出 </span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;<span class="comment">//n</span></span><br><span class="line">string op;<span class="comment">//最后的表达式 </span></span><br><span class="line">string A[N],B[N];<span class="comment">//#define A B</span></span><br><span class="line">map&lt;string,<span class="type">int</span>&gt; mp;<span class="comment">//记录A是几号表达式 </span></span><br><span class="line"><span class="type">int</span> C[N];<span class="comment">//分级：0完全整体  1+-  2*/ </span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; G[N];<span class="comment">//图：G[i][j] 表示i的第j个调用点 </span></span><br><span class="line">vector&lt;<span class="type">char</span>&gt; L[N],R[N];<span class="comment">//图：L[i][j] 表示i的第j个调用点左边的符号, R是右边的 </span></span><br><span class="line"><span class="type">bool</span> vis[N];<span class="comment">//有没有到过该节点 </span></span><br><span class="line"><span class="type">bool</span> safe[N];<span class="comment">//该节点是否安全 </span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Dfs</span><span class="params">(<span class="type">int</span> cur)</span><span class="comment">//DFS</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;G[cur].<span class="built_in">size</span>();++i)<span class="comment">//遍历所有子节点 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> to=G[cur][i];<span class="type">char</span> le=L[cur][i],ri=R[cur][i];<span class="comment">//to指向的点，le左边的符号，ri右边的符号 </span></span><br><span class="line">		<span class="keyword">if</span> (!vis[to])<span class="comment">//如果没有去过这个点就往下走 </span></span><br><span class="line">		&#123;</span><br><span class="line">			vis[to]=<span class="number">1</span>;</span><br><span class="line">			<span class="built_in">Dfs</span>(to);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (C[to]==<span class="number">1</span>)<span class="comment">//如果子节点级别为1 </span></span><br><span class="line">			<span class="keyword">if</span> (le==<span class="string">&#x27;*&#x27;</span>||le==<span class="string">&#x27;/&#x27;</span>||le==<span class="string">&#x27;-&#x27;</span>||ri==<span class="string">&#x27;*&#x27;</span>||ri==<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">				safe[cur]=<span class="number">0</span>;<span class="comment">//如果前面有*/-或后面有*/那当前节点不安全 </span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (C[to]==<span class="number">2</span>)<span class="comment">//如果级别为2 </span></span><br><span class="line">			<span class="keyword">if</span> (le==<span class="string">&#x27;/&#x27;</span>) safe[cur]=<span class="number">0</span>;<span class="comment">//前面有/不安全 </span></span><br><span class="line">		safe[cur]&amp;=safe[to];<span class="comment">//只要有一个子节点不安全就坏事 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n=<span class="built_in">read</span>();<span class="comment">//输入 </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">getdef</span>();<span class="comment">//去除#define </span></span><br><span class="line">		A[i]=<span class="built_in">getS</span>();<span class="comment">//读入A </span></span><br><span class="line">		B[i]=<span class="built_in">getL</span>();<span class="comment">//读入B </span></span><br><span class="line">		mp[A[i]]=i;<span class="comment">//记录A的编号 </span></span><br><span class="line">		<span class="type">int</span> inb=<span class="number">0</span>;<span class="comment">//在第几层括号 </span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;B[i].<span class="built_in">length</span>();++j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (B[i][j]==<span class="string">&#x27;(&#x27;</span>) ++inb;<span class="comment">//如果遇到左括号加深一层 </span></span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (B[i][j]==<span class="string">&#x27;)&#x27;</span>) --inb;<span class="comment">//如果遇到有括号降一层 </span></span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (inb==<span class="number">0</span>)<span class="comment">//如果在最外层 </span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (B[i][j]==<span class="string">&#x27;+&#x27;</span>||B[i][j]==<span class="string">&#x27;-&#x27;</span>) C[i]=<span class="number">1</span>;<span class="comment">//如果是+-，那么是1级 </span></span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (!C[i]&amp;&amp;(B[i][j]==<span class="string">&#x27;*&#x27;</span>||B[i][j]==<span class="string">&#x27;/&#x27;</span>)) C[i]=<span class="number">2</span>;<span class="comment">//如果是*/，那么是2级 </span></span><br><span class="line">			&#125;<span class="comment">//同时有+-和*/算+- </span></span><br><span class="line">		&#125;<span class="comment">//不然默认是0级 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//我不知道这算不算一个点，在C++中前面的#define也可以调用后面的#define </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;B[i].<span class="built_in">length</span>();++j) </span><br><span class="line">		&#123;<span class="comment">//找子表达式 </span></span><br><span class="line">			<span class="keyword">if</span> (!<span class="built_in">isCH</span>(B[i][j])) <span class="keyword">continue</span>; <span class="comment">//表达式全是字母，所以不是字母就continue</span></span><br><span class="line">			string s=<span class="string">&quot;&quot;</span>;<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">			<span class="type">int</span> k=j;<span class="comment">//从j往后找 </span></span><br><span class="line">			<span class="keyword">while</span> (k&lt;B[i].<span class="built_in">length</span>()&amp;&amp;<span class="built_in">isCH</span>(B[i][k])) s+=B[i][k],++k;</span><br><span class="line">			<span class="keyword">if</span> (mp[s])<span class="comment">//如果找出的字串是定义过的，那就连边 </span></span><br><span class="line">			&#123;</span><br><span class="line">				L[i].<span class="built_in">push_back</span>(j?B[i][j<span class="number">-1</span>]:<span class="string">&#x27;#&#x27;</span>);<span class="comment">//防止越界随便搞了一个字符 </span></span><br><span class="line">				R[i].<span class="built_in">push_back</span>(k&lt;B[i].<span class="built_in">length</span>()?B[i][k]:<span class="string">&#x27;#&#x27;</span>);<span class="comment">//L和R分别是左边的运算符和右边的运算符 </span></span><br><span class="line">				G[i].<span class="built_in">push_back</span>(mp[s]);<span class="comment">//像该节点连边 </span></span><br><span class="line">			&#125;</span><br><span class="line">			j=k;</span><br><span class="line">		&#125;</span><br><span class="line">		safe[i]=<span class="number">1</span>;<span class="comment">//初始设safe为1 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">if</span> (!vis[i]) vis[i]=<span class="number">1</span>,<span class="built_in">Dfs</span>(i);<span class="comment">//如果没有去过就DFS </span></span><br><span class="line">	op=<span class="built_in">getL</span>();<span class="comment">//输入最后的表达式 </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;op.<span class="built_in">length</span>();++j)</span><br><span class="line">	&#123;<span class="comment">//和之前那个循环很像（我是复制的） </span></span><br><span class="line">		<span class="keyword">if</span> (!<span class="built_in">isCH</span>(op[j])) <span class="keyword">continue</span>;</span><br><span class="line">		string s=<span class="string">&quot;&quot;</span>;<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> k=j;</span><br><span class="line">		<span class="keyword">while</span> (k&lt;op.<span class="built_in">length</span>()&amp;&amp;<span class="built_in">isCH</span>(op[k])) s+=op[k],++k;</span><br><span class="line">		<span class="keyword">if</span> (mp[s])<span class="comment">//同上 </span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (!safe[mp[s]])<span class="comment">//如果这个子表达式本生就不安全，直接输出 </span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">puts</span>(<span class="string">&quot;Suspicious&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (C[mp[s]]==<span class="number">2</span>&amp;&amp;j&amp;&amp;op[j<span class="number">-1</span>]==<span class="string">&#x27;/&#x27;</span>)<span class="comment">//如果该表达式为2级，左边是/，也不安全 </span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">puts</span>(<span class="string">&quot;Suspicious&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (C[mp[s]]==<span class="number">1</span></span><br><span class="line">				  &amp;&amp;(j&amp;&amp;(op[j<span class="number">-1</span>]==<span class="string">&#x27;/&#x27;</span>||op[j<span class="number">-1</span>]==<span class="string">&#x27;*&#x27;</span>||op[j<span class="number">-1</span>]==<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">				   ||k&lt;op.<span class="built_in">length</span>()&amp;&amp;(op[k]==<span class="string">&#x27;/&#x27;</span>||op[k]==<span class="string">&#x27;*&#x27;</span>)))</span><br><span class="line">			&#123;<span class="comment">//同上，如果表达式为1级，左边是/*-或右边是/*就不安全 </span></span><br><span class="line">				<span class="built_in">puts</span>(<span class="string">&quot;Suspicious&quot;</span>);</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		j=k;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">&quot;OK&quot;</span>);<span class="comment">//经历了以上一切还活着，输出OK </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Luogu/" rel="tag"># Luogu</a>
+              <a href="/blog/tags/Solution/" rel="tag"># Solution</a>
+              <a href="/blog/tags/CodeForces/" rel="tag"># CodeForces</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2021/12/18/P5380/" rel="prev" title="Solution - P5380 [THUPC2019]鸭棋">
+                  <i class="fa fa-angle-left"></i> Solution - P5380 [THUPC2019]鸭棋
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2021/12/31/P5521/" rel="next" title="Solution - P5521 [yLOI2019] 梅深不见冬">
+                  Solution - P5521 [yLOI2019] 梅深不见冬 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CleverL</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"LeonY34","repo":"CleverTalk","client_id":"Ov23li88tDepTLlGFzht","client_secret":"02cff4d2fe9ef04873403f86337de858d5e0d50a","admin_user":"LeonY34","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"9b33f7c8905fed0d60feab9d9a9f4104"}</script>
+<script src="/blog/js/third-party/comments/gitalk.js" defer></script>
+
+</body>
+</html>

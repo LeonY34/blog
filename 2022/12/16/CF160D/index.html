@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#FFA500"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-96x96.png">
+  <link rel="mask-icon" href="/blog/images/favicon.svg" color="#FFA500">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sigmar:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leony34.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"kimbie-light","dark":"kimbie-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js" defer></script>
+
+    <meta name="description" content="CF160D Edges in MST 退役后没事干写的。 首先，有个比较好想的暴力做法：先随便找一个最小生成树，然后树剖+线段树维护,每次对于横插边，看看链上边权的最大值是否和当前边权相等，如果相等是 2 否则是 3 ，同时更新这一段链使用横插边替换的最小值。做完横插边以后，对于树边，只需看看该点最小值是否为此边权即可，是即 2 ，不是即 3 。两个 log⁡\loglog ，但是 n≤105n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solution - CF160D Edges in MST">
+<meta property="og:url" content="http://leony34.github.io/blog/2022/12/16/CF160D/index.html">
+<meta property="og:site_name" content="Welcome to My Blog!">
+<meta property="og:description" content="CF160D Edges in MST 退役后没事干写的。 首先，有个比较好想的暴力做法：先随便找一个最小生成树，然后树剖+线段树维护,每次对于横插边，看看链上边权的最大值是否和当前边权相等，如果相等是 2 否则是 3 ，同时更新这一段链使用横插边替换的最小值。做完横插边以后，对于树边，只需看看该点最小值是否为此边权即可，是即 2 ，不是即 3 。两个 log⁡\loglog ，但是 n≤105n">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-16T13:40:00.000Z">
+<meta property="article:modified_time" content="2026-03-23T04:41:39.476Z">
+<meta property="article:author" content="CleverL">
+<meta property="article:tag" content="CodeForces">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="Luogu">
+<meta property="article:tag" content="Solution">
+<meta property="article:tag" content="Tree">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://leony34.github.io/blog/2022/12/16/CF160D/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://leony34.github.io/blog/2022/12/16/CF160D/","path":"2022/12/16/CF160D/","title":"Solution - CF160D Edges in MST"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Solution - CF160D Edges in MST | Welcome to My Blog!</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/blog/js/utils.js" defer></script><script src="/blog/js/motion.js" defer></script><script src="/blog/js/sidebar.js" defer></script><script src="/blog/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/blog/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/blog/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/blog/js/third-party/math/katex.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Welcome to My Blog!</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">this is a website</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa-solid fa-house fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa-solid fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-posts"><a href="/blog/archives" rel="section"><i class="fa-solid fa-file-lines fa-fw"></i>posts</a></li><li class="menu-item menu-item-codes"><a href="/blog/downloads/code" rel="section"><i class="fa-solid fa-code fa-fw"></i>codes</a></li><li class="menu-item menu-item-my-main-page"><a href="https://leony34.github.io/" rel="section"><i class="fa-solid fa-earth-asia fa-fw"></i>my main page</a></li><li class="menu-item menu-item-talk"><a href="/blog/talk/" rel="section"><i class="fa fa-comments fa-fw"></i>talk</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CleverL</p>
+  <div class="site-description" itemprop="description">Life is like a box of chocolates.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://leony34.github.io/blog/2022/12/16/CF160D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="CleverL">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to My Blog!">
+      <meta itemprop="description" content="Life is like a box of chocolates.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Solution - CF160D Edges in MST | Welcome to My Blog!">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Solution - CF160D Edges in MST
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-16 21:40:00" itemprop="dateCreated datePublished" datetime="2022-12-16T21:40:00+08:00">2022-12-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-23 12:41:39" itemprop="dateModified" datetime="2026-03-23T12:41:39+08:00">2026-03-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF160D">CF160D Edges in MST</a></p>
+<p>退役后没事干写的。</p>
+<p>首先，有个比较好想的暴力做法：先随便找一个最小生成树，然后树剖+线段树维护,每次对于横插边，看看链上边权的最大值是否和当前边权相等，如果相等是 2 否则是 3 ，同时更新这一段链使用横插边替换的最小值。做完横插边以后，对于树边，只需看看该点最小值是否为此边权即可，是即 2 ，不是即 3 。两个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span> ，但是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">n\leq 10^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span> ，所以被我搞过去了（还挺快）。</p>
+<span id="more"></span>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gc getchar</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pc putchar</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> F(i,x,y) for(int i=x;i&lt;=y;++i)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R(i,x,y) for(int i=x;i&gt;=y;--i)</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> x=<span class="number">0</span>;<span class="type">char</span> ch=<span class="built_in">gc</span>();<span class="type">bool</span> p=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) ch==<span class="string">&#x27;-&#x27;</span>?p=<span class="number">0</span>:<span class="number">0</span>,ch=<span class="built_in">gc</span>();</span><br><span class="line">	<span class="keyword">while</span> ( <span class="built_in">isdigit</span>(ch)) x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+(ch^<span class="string">&#x27;0&#x27;</span>),ch=<span class="built_in">gc</span>();</span><br><span class="line">	<span class="keyword">return</span> p?x:-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e5</span><span class="number">+5</span>,INF=<span class="number">1e9</span><span class="number">+7</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">	<span class="type">int</span> pos,val;</span><br><span class="line">&#125;;</span><br><span class="line">std::vector&lt;Edge&gt; G[N];</span><br><span class="line"><span class="type">int</span> n,m,dfn[N],dep[N],top[N],fa[N],son[N],sz[N],val[N],tot,vvv[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dfs0</span><span class="params">(<span class="type">int</span> cur)</span></span>&#123;</span><br><span class="line">	<span class="comment">//printf(&quot;cur = %d\n&quot;,cur);</span></span><br><span class="line">	sz[cur]=<span class="number">1</span>;</span><br><span class="line">	dep[cur]=dep[fa[cur]]<span class="number">+1</span>;</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">0</span>,(<span class="type">int</span>)G[cur].<span class="built_in">size</span>()<span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="type">int</span> to=G[cur][i].pos,v=G[cur][i].val;</span><br><span class="line">		<span class="keyword">if</span> (to==fa[cur]) <span class="keyword">continue</span>;</span><br><span class="line">		fa[to]=cur;</span><br><span class="line">		vvv[to]=v;</span><br><span class="line">		<span class="built_in">Dfs0</span>(to);</span><br><span class="line">		sz[cur]+=sz[to];</span><br><span class="line">		<span class="keyword">if</span> (sz[to]&gt;sz[son[cur]]) son[cur]=to;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dfs1</span><span class="params">(<span class="type">int</span> cur)</span></span>&#123;</span><br><span class="line">	dfn[cur]=++tot;<span class="comment">//printf(&quot;cur = %d, fa = %d, dfn = %d\n&quot;,cur,fa[cur],dfn[cur]);</span></span><br><span class="line">	val[dfn[cur]]=vvv[cur];</span><br><span class="line">	<span class="keyword">if</span> (!top[cur]) top[cur]=cur;</span><br><span class="line">	<span class="keyword">if</span> (son[cur]) top[son[cur]]=top[cur],<span class="built_in">Dfs1</span>(son[cur]);</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">0</span>,(<span class="type">int</span>)G[cur].<span class="built_in">size</span>()<span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="type">int</span> to=G[cur][i].pos;</span><br><span class="line">		<span class="keyword">if</span> (to==fa[cur]||to==son[cur]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">Dfs1</span>(to);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min std::min</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max std::max</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mid ((l+r)&gt;&gt;1)</span></span><br><span class="line"><span class="type">int</span> lz[N&lt;&lt;<span class="number">2</span>],minn[N&lt;&lt;<span class="number">2</span>],maxn[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	minn[k]=<span class="built_in">min</span>(minn[k&lt;&lt;<span class="number">1</span>],minn[k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">putmin</span><span class="params">(<span class="type">int</span> k,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	minn[k]=<span class="built_in">min</span>(minn[k],v),lz[k]=<span class="built_in">min</span>(lz[k],v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (lz[k]!=INF) <span class="built_in">putmin</span>(k&lt;&lt;<span class="number">1</span>,lz[k]),<span class="built_in">putmin</span>(k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,lz[k]),lz[k]=INF;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Build</span><span class="params">(<span class="type">int</span> k,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	lz[k]=INF;</span><br><span class="line">	<span class="keyword">if</span> (l==r) <span class="keyword">return</span> minn[k]=INF,maxn[k]=val[l],<span class="built_in">void</span>();</span><br><span class="line">	<span class="built_in">Build</span>(k&lt;&lt;<span class="number">1</span>,l,mid),<span class="built_in">Build</span>(k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r);</span><br><span class="line">	<span class="built_in">pushup</span>(k);maxn[k]=<span class="built_in">max</span>(maxn[k&lt;&lt;<span class="number">1</span>],maxn[k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Modify</span><span class="params">(<span class="type">int</span> k,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> le,<span class="type">int</span> ri,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l&gt;=le&amp;&amp;r&lt;=ri) <span class="keyword">return</span> <span class="built_in">putmin</span>(k,v);</span><br><span class="line">	<span class="built_in">pushdown</span>(k);</span><br><span class="line">	<span class="keyword">if</span> (mid&gt;=le) <span class="built_in">Modify</span>(k&lt;&lt;<span class="number">1</span>,l,mid,le,ri,v);</span><br><span class="line">	<span class="keyword">if</span> (mid&lt; ri) <span class="built_in">Modify</span>(k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,le,ri,v);</span><br><span class="line">	<span class="built_in">pushup</span>(k);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Querymax</span><span class="params">(<span class="type">int</span> k,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> le,<span class="type">int</span> ri)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l&gt;=le&amp;&amp;r&lt;=ri) <span class="keyword">return</span> maxn[k];</span><br><span class="line">	<span class="type">int</span> res=<span class="number">0</span>;<span class="built_in">pushdown</span>(k);</span><br><span class="line">	<span class="keyword">if</span> (mid&gt;=le) res=<span class="built_in">max</span>(res,<span class="built_in">Querymax</span>(k&lt;&lt;<span class="number">1</span>,l,mid,le,ri));</span><br><span class="line">	<span class="keyword">if</span> (mid&lt; ri) res=<span class="built_in">max</span>(res,<span class="built_in">Querymax</span>(k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,le,ri));</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Querymin</span><span class="params">(<span class="type">int</span> k,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> pos)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l==r) <span class="keyword">return</span> minn[k];</span><br><span class="line">	<span class="built_in">pushdown</span>(k);</span><br><span class="line">	<span class="keyword">if</span> (mid&gt;=pos) <span class="keyword">return</span> <span class="built_in">Querymin</span>(k&lt;&lt;<span class="number">1</span>,l,mid,pos);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">Querymin</span>(k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r,pos);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">Add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="comment">//printf(&quot;Add:: x = %d, y = %d, v = %d\n&quot;,x,y,v);</span></span><br><span class="line">	std::vector&lt;Edge&gt; p;</span><br><span class="line">	<span class="keyword">while</span> (top[x]!=top[y])&#123;</span><br><span class="line">		<span class="comment">//printf(&quot;x = %d, y = %d\n&quot;,x,y);</span></span><br><span class="line">		<span class="keyword">if</span> (dep[top[x]]&lt;dep[top[y]]) x^=y^=x^=y;</span><br><span class="line">		p.<span class="built_in">push_back</span>(&#123;dfn[top[x]],dfn[x]&#125;);</span><br><span class="line">		x=fa[top[x]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x!=y)&#123;</span><br><span class="line">		<span class="keyword">if</span> (dep[x]&lt;dep[y]) x^=y^=x^=y;</span><br><span class="line">		p.<span class="built_in">push_back</span>(&#123;dfn[y]<span class="number">+1</span>,dfn[x]&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">bool</span> flag=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">0</span>,(<span class="type">int</span>)p.<span class="built_in">size</span>()<span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="type">int</span> l=p[i].pos,r=p[i].val;</span><br><span class="line">		<span class="comment">//printf(&quot;now = %d %d, ans = %d\n&quot;,l,r,Querymax(1,1,n,l,r));</span></span><br><span class="line">		<span class="built_in">Modify</span>(<span class="number">1</span>,<span class="number">1</span>,n,l,r,v);</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">Querymax</span>(<span class="number">1</span>,<span class="number">1</span>,n,l,r)==v) flag=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">eee</span>&#123;</span><br><span class="line">	<span class="type">int</span> l,r,val,tag;</span><br><span class="line">&#125; w[N];</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span> &lt; (eee a,eee b)&#123;</span><br><span class="line">	<span class="keyword">return</span> a.val&lt;b.val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> f[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x==f[x]) <span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">return</span> f[x]=<span class="built_in">find</span>(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> ans[N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n=<span class="built_in">read</span>(),m=<span class="built_in">read</span>();</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,n) f[i]=i;</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">		w[i].l=<span class="built_in">read</span>(),w[i].r=<span class="built_in">read</span>(),w[i].val=<span class="built_in">read</span>(),w[i].tag=i;</span><br><span class="line">	&#125;</span><br><span class="line">	std::<span class="built_in">sort</span>(w<span class="number">+1</span>,w<span class="number">+1</span>+m);</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">		<span class="type">int</span> x=w[i].l,y=w[i].r,v=w[i].val;</span><br><span class="line">		<span class="comment">//printf(&quot;findx = %d, findy = %d\n&quot;,find(x),find(y));</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">find</span>(x)==<span class="built_in">find</span>(y)) <span class="keyword">continue</span>;</span><br><span class="line">		f[<span class="built_in">find</span>(x)]=<span class="built_in">find</span>(y);</span><br><span class="line">		G[x].<span class="built_in">push_back</span>(&#123;y,v&#125;);</span><br><span class="line">		G[y].<span class="built_in">push_back</span>(&#123;x,v&#125;);</span><br><span class="line">		<span class="comment">//printf(&quot;add %d and %d\n&quot;,x,y);</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">	<span class="built_in">Dfs0</span>(<span class="number">1</span>),<span class="built_in">Dfs1</span>(<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">Build</span>(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">	<span class="comment">//F(i,1,n) printf(&quot;i = %d, dfn = %d\n&quot;,i,dfn[i]);</span></span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">		<span class="type">int</span> x=w[i].l,y=w[i].r,v=w[i].val;</span><br><span class="line">		<span class="keyword">if</span> (fa[x]!=y&amp;&amp;fa[y]!=x)&#123;</span><br><span class="line">			ans[w[i].tag]=<span class="built_in">Add</span>(x,y,v)?<span class="number">2</span>:<span class="number">3</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">		<span class="type">int</span> x=w[i].l,y=w[i].r;</span><br><span class="line">		<span class="keyword">if</span> (fa[x]==y||fa[y]==x)&#123;</span><br><span class="line">			<span class="keyword">if</span> (dep[x]&lt;dep[y]) x^=y^=x^=y;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">Querymin</span>(<span class="number">1</span>,<span class="number">1</span>,n,dfn[x])==<span class="built_in">Querymax</span>(<span class="number">1</span>,<span class="number">1</span>,n,dfn[x],dfn[x])) ans[w[i].tag]=<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">else</span> ans[w[i].tag]=<span class="number">1</span>;</span><br><span class="line">			<span class="comment">//printf(&quot;x = %d, y = %d, Qmin = %d, Qmax = %d\n&quot;,x,y,</span></span><br><span class="line">			<span class="comment">//Querymin(1,1,n,dfn[x]),Querymax(1,1,n,dfn[x],dfn[x]));</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">		<span class="keyword">if</span> (ans[i]==<span class="number">1</span>) <span class="built_in">puts</span>(<span class="string">&quot;any&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (ans[i]==<span class="number">2</span>) <span class="built_in">puts</span>(<span class="string">&quot;at least one&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;none&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一查题解发现有个比较聪明的做法。对于边权相同的情况，显然就是割边为 1 ，否则为 2 。那么就做 kruskal 的时候把边权相同的边一起考虑， Tarjan 判断割边就好啦。这个玩意只有一只 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span> ，还好写。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gc getchar</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pc putchar</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> F(i,x,y) for(int i=x;i&lt;=y;++i)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R(i,x,y) for(int i=x;i&gt;=y;--i)</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> x=<span class="number">0</span>;<span class="type">char</span> ch=<span class="built_in">gc</span>();</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) ch=<span class="built_in">gc</span>();</span><br><span class="line">	<span class="keyword">while</span> ( <span class="built_in">isdigit</span>(ch)) x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+(ch^<span class="string">&#x27;0&#x27;</span>),ch=<span class="built_in">gc</span>();</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e5</span><span class="number">+5</span>;</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">	<span class="type">int</span> l,r,val,tag;</span><br><span class="line">&#125; P[N];</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span> &lt; (Edge a,Edge b)&#123;</span><br><span class="line">	<span class="keyword">return</span> a.val&lt;b.val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">	<span class="type">int</span> pos,tag;</span><br><span class="line">&#125;;</span><br><span class="line">std::vector&lt;node&gt; G[N];</span><br><span class="line"><span class="type">int</span> dfn[N],low[N],tot,fa[N],ans[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x==fa[x]?x:fa[x]=<span class="built_in">find</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min std::min</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Tarjan</span><span class="params">(<span class="type">int</span> cur,<span class="type">int</span> pre)</span></span>&#123;</span><br><span class="line">	dfn[cur]=low[cur]=++tot;</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">0</span>,(<span class="type">int</span>)G[cur].<span class="built_in">size</span>()<span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="type">int</span> to=G[cur][i].pos,tg=G[cur][i].tag;</span><br><span class="line">		<span class="keyword">if</span> (pre==tg) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (!dfn[to]) <span class="built_in">Tarjan</span>(to,tg),low[cur]=<span class="built_in">min</span>(low[cur],low[to]);</span><br><span class="line">		<span class="keyword">else</span> low[cur]=<span class="built_in">min</span>(low[cur],dfn[to]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (low[cur]==dfn[cur]&amp;&amp;pre) ans[pre]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n=<span class="built_in">read</span>(),m=<span class="built_in">read</span>();</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,n) fa[i]=i;</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">		P[i].l=<span class="built_in">read</span>(),P[i].r=<span class="built_in">read</span>(),P[i].val=<span class="built_in">read</span>(),P[i].tag=i;</span><br><span class="line">	&#125;</span><br><span class="line">	std::<span class="built_in">sort</span>(P<span class="number">+1</span>,P<span class="number">+1</span>+m);</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">		<span class="type">int</span> rr=i;</span><br><span class="line">		<span class="keyword">while</span> (rr&lt;m&amp;&amp;P[rr<span class="number">+1</span>].val==P[rr].val) ++rr;</span><br><span class="line">		<span class="built_in">F</span>(j,i,rr)&#123;</span><br><span class="line">			<span class="type">int</span> l=<span class="built_in">find</span>(P[j].l),r=<span class="built_in">find</span>(P[j].r),tg=P[j].tag;</span><br><span class="line">			<span class="keyword">if</span> (l==r)&#123;</span><br><span class="line">				ans[tg]=<span class="number">3</span>;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			G[l].<span class="built_in">push_back</span>(&#123;r,tg&#125;);</span><br><span class="line">			G[r].<span class="built_in">push_back</span>(&#123;l,tg&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">F</span>(j,i,rr)&#123;</span><br><span class="line">			<span class="type">int</span> l=<span class="built_in">find</span>(P[j].l),r=<span class="built_in">find</span>(P[j].r);</span><br><span class="line">			<span class="keyword">if</span> (l!=r&amp;&amp;!dfn[l]) <span class="built_in">Tarjan</span>(l,<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">F</span>(j,i,rr)&#123;</span><br><span class="line">			<span class="type">int</span> l=<span class="built_in">find</span>(P[j].l),r=<span class="built_in">find</span>(P[j].r),tg=P[j].tag;</span><br><span class="line">			G[l].<span class="built_in">clear</span>(),G[r].<span class="built_in">clear</span>();</span><br><span class="line">			dfn[l]=dfn[r]=low[l]=low[r]=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (!ans[tg]) ans[tg]=<span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">F</span>(j,i,rr)&#123;</span><br><span class="line">			<span class="type">int</span> l=<span class="built_in">find</span>(P[j].l),r=<span class="built_in">find</span>(P[j].r);</span><br><span class="line">			fa[l]=r;</span><br><span class="line">		&#125;</span><br><span class="line">		i=rr;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">F</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">		<span class="keyword">if</span> (ans[i]==<span class="number">1</span>) <span class="built_in">puts</span>(<span class="string">&quot;any&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (ans[i]==<span class="number">2</span>) <span class="built_in">puts</span>(<span class="string">&quot;at least one&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;none&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Luogu/" rel="tag"># Luogu</a>
+              <a href="/blog/tags/Data-Structure/" rel="tag"># Data Structure</a>
+              <a href="/blog/tags/Solution/" rel="tag"># Solution</a>
+              <a href="/blog/tags/CodeForces/" rel="tag"># CodeForces</a>
+              <a href="/blog/tags/Tree/" rel="tag"># Tree</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2022/11/27/XiaoXiangTiKu/" rel="prev" title="小翔题库">
+                  <i class="fa fa-angle-left"></i> 小翔题库
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2023/02/05/P9035/" rel="next" title="Solution - P9035 「KDOI-04」Pont des souvenirs">
+                  Solution - P9035 「KDOI-04」Pont des souvenirs <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CleverL</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"LeonY34","repo":"CleverTalk","client_id":"Ov23li88tDepTLlGFzht","client_secret":"02cff4d2fe9ef04873403f86337de858d5e0d50a","admin_user":"LeonY34","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"5b455eeb0cf197e4bf1373f5b4fee55a"}</script>
+<script src="/blog/js/third-party/comments/gitalk.js" defer></script>
+
+</body>
+</html>

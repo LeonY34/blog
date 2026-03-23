@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#FFA500"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-96x96.png">
+  <link rel="mask-icon" href="/blog/images/favicon.svg" color="#FFA500">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Sigmar:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"leony34.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"kimbie-light","dark":"kimbie-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js" defer></script>
+
+    <meta name="description" content="链接 题意较清楚，不再赘述。 讲一个比较新奇的做法，不知道对不对，欢迎指正。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solution - P5521 [yLOI2019] 梅深不见冬">
+<meta property="og:url" content="http://leony34.github.io/blog/2021/12/31/P5521/index.html">
+<meta property="og:site_name" content="Welcome to My Blog!">
+<meta property="og:description" content="链接 题意较清楚，不再赘述。 讲一个比较新奇的做法，不知道对不对，欢迎指正。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-31T12:29:07.000Z">
+<meta property="article:modified_time" content="2026-03-23T04:41:39.509Z">
+<meta property="article:author" content="CleverL">
+<meta property="article:tag" content="Luogu">
+<meta property="article:tag" content="Solution">
+<meta property="article:tag" content="Tree">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://leony34.github.io/blog/2021/12/31/P5521/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://leony34.github.io/blog/2021/12/31/P5521/","path":"2021/12/31/P5521/","title":"Solution - P5521 [yLOI2019] 梅深不见冬"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Solution - P5521 [yLOI2019] 梅深不见冬 | Welcome to My Blog!</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/blog/js/utils.js" defer></script><script src="/blog/js/motion.js" defer></script><script src="/blog/js/sidebar.js" defer></script><script src="/blog/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/blog/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/blog/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/blog/js/third-party/math/katex.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Welcome to My Blog!</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">this is a website</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa-solid fa-house fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa-solid fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-posts"><a href="/blog/archives" rel="section"><i class="fa-solid fa-file-lines fa-fw"></i>posts</a></li><li class="menu-item menu-item-codes"><a href="/blog/downloads/code" rel="section"><i class="fa-solid fa-code fa-fw"></i>codes</a></li><li class="menu-item menu-item-my-main-page"><a href="https://leony34.github.io/" rel="section"><i class="fa-solid fa-earth-asia fa-fw"></i>my main page</a></li><li class="menu-item menu-item-talk"><a href="/blog/talk/" rel="section"><i class="fa fa-comments fa-fw"></i>talk</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CleverL</p>
+  <div class="site-description" itemprop="description">Life is like a box of chocolates.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://leony34.github.io/blog/2021/12/31/P5521/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="CleverL">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to My Blog!">
+      <meta itemprop="description" content="Life is like a box of chocolates.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Solution - P5521 [yLOI2019] 梅深不见冬 | Welcome to My Blog!">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Solution - P5521 [yLOI2019] 梅深不见冬
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-12-31 20:29:07" itemprop="dateCreated datePublished" datetime="2021-12-31T20:29:07+08:00">2021-12-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-23 12:41:39" itemprop="dateModified" datetime="2026-03-23T12:41:39+08:00">2026-03-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5521">链接</a></p>
+<p>题意较清楚，不再赘述。</p>
+<p>讲一个比较新奇的做法，不知道对不对，欢迎指正。</p>
+<span id="more"></span>
+<hr />
+<p>拿到题目我猜测父节点和子节点满足某些递推的关系</p>
+<p>我们发现完成某一个节点的时候，此时存在权值的节点只有<strong>这个节点</strong>和<strong>它的所有子节点</strong>。</p>
+<p>然而这<strong>不一定</strong>是最大值，因为在<strong>满足它的子节点的时候，有可能会有超出最终需要值的情况</strong>。</p>
+<p>但是我们的子节点是<strong>逐个满足</strong>的，所以每次存在这种<strong>超出可能</strong>的<strong>只有一个子节点</strong>。</p>
+<p>所以<strong>所有可能爆出的情况</strong>是：</p>
+<blockquote>
+<p><strong>当前已经满足好的子节点的权值和正在满足的这个子节点满足过程中出现的最大权值和。</strong></p>
+</blockquote>
+<p>不妨用 $ Max[i] $ 来表示<strong>满足 $ i $ 节点过程中出现的最大权值和</strong>。 $ W[i] $ 表示 $ i $ 的权值。</p>
+<p>所以满足子节点的<strong>顺序</strong>应该是：</p>
+<blockquote>
+<p>按 $ Max[i] - W[i] $ 递减。</p>
+</blockquote>
+<p>$ Code : $</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span><span class="comment">//</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(x,y) (x&gt;y?x:y)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min(x,y) (x&lt;y?x:y)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">100005</span>,inf=<span class="number">2e9</span>;</span><br><span class="line"><span class="type">int</span> n,W[N],Ans[N],Max[N];<span class="comment">//W[i]权值 Ans[i]答案 Max[i]满足该节点最大权值和（见上文） </span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; Son[N];<span class="comment">//Son[i] i的儿子们 </span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123; <span class="type">int</span> p,tag; &#125;;</span><br><span class="line"><span class="type">bool</span> <span class="keyword">operator</span> &lt; (node a,node b)&#123; <span class="keyword">return</span> a.p&gt;b.p; &#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> node <span class="title">mp</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123; node t;t.p=x,t.tag=y;<span class="keyword">return</span> t; &#125;<span class="comment">//结构体：用于排序 </span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span><span class="comment">//快读 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> num=<span class="number">0</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>) ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>) num=(num&lt;&lt;<span class="number">1</span>)+(num&lt;&lt;<span class="number">3</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">put</span><span class="params">(<span class="type">int</span> x)</span></span>&#123; <span class="keyword">if</span> (x) <span class="built_in">put</span>(x/<span class="number">10</span>),<span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="string">&#x27;0&#x27;</span>); &#125;<span class="comment">//快输（不会有负数和0） </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n=<span class="built_in">read</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;++i) Son[<span class="built_in">read</span>()].<span class="built_in">pb</span>(i);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) W[i]=<span class="built_in">read</span>();<span class="comment">//输入 </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=n;i&gt;=<span class="number">1</span>;--i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> sum=<span class="number">0</span>,maxn=<span class="number">0</span>,ansmax=<span class="number">0</span>;</span><br><span class="line">		vector&lt;node&gt; v;<span class="comment">//sum子节点权值和  maxn子节点中最大的Max  ansmax子节点中最大的Ans </span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;Son[i].<span class="built_in">size</span>();++j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> to=Son[i][j];</span><br><span class="line">			v.<span class="built_in">pb</span>(<span class="built_in">mp</span>(Max[to]-W[to],to)),maxn=<span class="built_in">max</span>(maxn,Max[to]),ansmax=<span class="built_in">max</span>(ansmax,Ans[to]);</span><br><span class="line">		&#125;<span class="comment">//v来存储Max-W并记录属于谁 </span></span><br><span class="line">		<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>());<span class="comment">//排序 </span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">0</span>;j&lt;v.<span class="built_in">size</span>();++j)</span><br><span class="line">		&#123;</span><br><span class="line">			sum+=W[v[j].tag];<span class="comment">//加和</span></span><br><span class="line">			Ans[i]=<span class="built_in">max</span>(Ans[i],sum+v[j].p);<span class="comment">//sum+v[j].p是因为v[j].p在排序前减掉了W[] </span></span><br><span class="line">		&#125;</span><br><span class="line">		Max[i]=<span class="built_in">max</span>(<span class="built_in">max</span>(Ans[i],sum+W[i]),maxn);<span class="comment">//更新Max </span></span><br><span class="line">		Ans[i]=<span class="built_in">max</span>(Ans[i],<span class="built_in">max</span>(sum+W[i],ansmax));<span class="comment">//更新答案 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">put</span>(Ans[i]),<span class="built_in">putchar</span>(<span class="string">&#x27; &#x27;</span>);<span class="comment">//输出 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Luogu/" rel="tag"># Luogu</a>
+              <a href="/blog/tags/Solution/" rel="tag"># Solution</a>
+              <a href="/blog/tags/Tree/" rel="tag"># Tree</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2021/12/26/CF7E/" rel="prev" title="Solution - CF7E Defining Macros">
+                  <i class="fa fa-angle-left"></i> Solution - CF7E Defining Macros
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2022/02/02/Note-BIT/" rel="next" title="Note - 树状数组">
+                  Note - 树状数组 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CleverL</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"LeonY34","repo":"CleverTalk","client_id":"Ov23li88tDepTLlGFzht","client_secret":"02cff4d2fe9ef04873403f86337de858d5e0d50a","admin_user":"LeonY34","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"40f9e8888677d952ac75c5f464385fab"}</script>
+<script src="/blog/js/third-party/comments/gitalk.js" defer></script>
+
+</body>
+</html>
