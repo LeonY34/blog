@@ -178,13 +178,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/blog/tags/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -201,6 +201,93 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://leony34.github.io/blog/2025/12/28/PaS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="CleverL">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to My Blog!">
+      <meta itemprop="description" content="Life is like a box of chocolates.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Welcome to My Blog!">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2025/12/28/PaS/" class="post-title-link" itemprop="url">PaS</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-12-28 21:00:14" itemprop="dateCreated datePublished" datetime="2025-12-28T21:00:14+08:00">2025-12-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-23 14:48:13" itemprop="dateModified" datetime="2026-03-23T14:48:13+08:00">2026-03-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="概率公理"><a class="markdownIt-Anchor" href="#概率公理"></a> 概率公理</h2>
+<!-- ![图片image](image.png) -->
+<img src="/blog/2025/12/28/PaS/image.png" class="" title="概率公理图">
+<h2 id="分布率分布列"><a class="markdownIt-Anchor" href="#分布率分布列"></a> 分布率（分布列）</h2>
+<p>求<strong>离散型随机变量</strong>的分布律，需要画一个表，类似：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2025/12/28/PaS/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -943,89 +1030,6 @@
 <details>
 <summary>Show Code</summary>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">1</span>;</span><br><span class="line">LL A[N], B[N], rev[N]; <span class="type">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">gcd</span><span class="params">(LL a, LL b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (b)&#123;</span><br><span class="line">        a %= b;</span><br><span class="line">        a ^= b ^= a ^= b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> t; cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span> (t--)&#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) cin &gt;&gt; A[i];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; ++i) B[i] = <span class="built_in">abs</span>(A[i] - A[i + <span class="number">1</span>]), rev[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">1</span>, mid = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        LL sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> r = <span class="number">1</span>; r &lt; n; ++r)&#123;</span><br><span class="line">            sum = <span class="built_in">gcd</span>(sum, B[r]);</span><br><span class="line">            <span class="keyword">while</span> (l &lt;= mid &amp;&amp; <span class="built_in">gcd</span>(sum, rev[l]) == <span class="number">1</span>) ++l;</span><br><span class="line">            <span class="keyword">if</span> (l &gt; mid)&#123; <span class="comment">// 超过mid时重新计算</span></span><br><span class="line">                mid = r, rev[mid] = B[mid];</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> i = mid - <span class="number">1</span>; i &gt;= l; --i)&#123;</span><br><span class="line">                    rev[i] = <span class="built_in">gcd</span>(rev[i + <span class="number">1</span>], B[i]);</span><br><span class="line">                &#125;</span><br><span class="line">                sum = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (l &lt;= mid &amp;&amp; <span class="built_in">gcd</span>(sum, rev[l]) == <span class="number">1</span>) ++l;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, r - l + <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</details>
-<hr />
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://leony34.github.io/blog/2025/03/14/Template/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="CleverL">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome to My Blog!">
-      <meta itemprop="description" content="Life is like a box of chocolates.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Welcome to My Blog!">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2025/03/14/Template/" class="post-title-link" itemprop="url">Template</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2025-03-14 22:30:14" itemprop="dateCreated datePublished" datetime="2025-03-14T22:30:14+08:00">2025-03-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-23 12:41:39" itemprop="dateModified" datetime="2026-03-23T12:41:39+08:00">2026-03-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>普通BST(Binary Search Tree)：一种二叉树，保证所有节点的值都比左儿子大（如有），且比右儿子小（如有）。这样，这种二叉树的<strong>前序遍历</strong>就一定是一个递增序列。</p>
-<p>在随机情况下，这个数据结构的表现非常好，但是有心人总喜欢卡它，比如说这道题就过不去：</p>
-<p><em><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3369">https://www.luogu.com.cn/problem/P3369</a></em></p>
-<details>
-<summary>Show Code</summary>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100001</span>, INF = <span class="number">1e7</span> + <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> rt, son[N][<span class="number">2</span>]<span class="comment">/*两个儿子*/</span>, </span><br><span class="line">        val[N]<span class="comment">/*当前节点值*/</span>, </span><br><span class="line">        cnt[N]<span class="comment">/*当前节点个数*/</span>, </span><br><span class="line">        sz[N]<span class="comment">/*当前节点子树内个数*/</span>, </span><br><span class="line">        tot<span class="comment">/*总结点数*/</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">newnode</span><span class="params">(<span class="type">int</span> x)</span></span>&#123; <span class="comment">// 加新点</span></span><br><span class="line">    val[++tot] = x;</span><br><span class="line">    cnt[tot] = <span class="number">1</span>;</span><br><span class="line">    sz[tot] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> tot;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> x)</span></span>&#123; <span class="comment">// 更新节点信息</span></span><br><span class="line">    sz[x] = sz[son[x][<span class="number">0</span>]] + sz[son[x][<span class="number">1</span>]] + cnt[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Insert</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> x)</span></span>&#123; <span class="comment">// 插入节点，值为x</span></span><br><span class="line">    <span class="keyword">if</span> (!u) <span class="keyword">return</span> <span class="built_in">newnode</span>(x);</span><br><span class="line">    <span class="keyword">if</span> (val[u] == x) <span class="keyword">return</span> ++cnt[u], u; <span class="comment">// 多个表达式用逗号连接，返回最后一个。</span></span><br><span class="line">    <span class="keyword">if</span> (val[u] &lt; x) son[u][<span class="number">1</span>] = <span class="built_in">Insert</span>(son[u][<span class="number">1</span>], x);</span><br><span class="line">    <span class="keyword">else</span> son[u][<span class="number">0</span>] = <span class="built_in">Insert</span>(son[u][<span class="number">0</span>], x);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pushup</span>(u), u;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Delete</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> x)</span></span>&#123; <span class="comment">// 删除值为x的节点</span></span><br><span class="line">    <span class="keyword">if</span> (val[u] == x) --cnt[u];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (val[u] &lt; x) <span class="built_in">Delete</span>(son[u][<span class="number">1</span>], x);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">Delete</span>(son[u][<span class="number">0</span>], x);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pushup</span>(u);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Rank</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> x)</span></span>&#123; <span class="comment">// 查询x是第几大的节点</span></span><br><span class="line">    <span class="keyword">if</span> (!u) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (val[u] &lt; x) <span class="keyword">return</span> sz[son[u][<span class="number">0</span>]] + cnt[u] + <span class="built_in">Rank</span>(son[u][<span class="number">1</span>], x);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (val[u] == x) <span class="keyword">return</span> sz[son[u][<span class="number">0</span>]] + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">Rank</span>(son[u][<span class="number">0</span>], x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">QueryK</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> k)</span></span>&#123; <span class="comment">// 查询排名为k的数</span></span><br><span class="line">    <span class="keyword">if</span> (k &lt;= sz[son[u][<span class="number">0</span>]]) <span class="keyword">return</span> <span class="built_in">QueryK</span>(son[u][<span class="number">0</span>], k);</span><br><span class="line">    <span class="keyword">if</span> (k &lt;= sz[son[u][<span class="number">0</span>]] + cnt[u]) <span class="keyword">return</span> val[u];</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">QueryK</span>(son[u][<span class="number">1</span>], k - sz[son[u][<span class="number">0</span>]] - cnt[u]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n; <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">while</span> (n--)&#123;</span><br><span class="line">        <span class="type">int</span> opt, x; <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;opt, &amp;x);</span><br><span class="line">        <span class="keyword">if</span> (opt == <span class="number">1</span>) rt = <span class="built_in">Insert</span>(rt, x);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (opt == <span class="number">2</span>) <span class="built_in">Delete</span>(rt, x);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (opt == <span class="number">3</span>) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="built_in">Rank</span>(rt, x));</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (opt == <span class="number">4</span>) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="built_in">QueryK</span>(rt, x));</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (opt == <span class="number">5</span>) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="built_in">QueryK</span>(rt, <span class="built_in">Rank</span>(rt, x) - <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (opt == <span class="number">6</span>) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="built_in">QueryK</span>(rt, <span class="built_in">Rank</span>(rt, x + <span class="number">1</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </details>
 <hr />
 
