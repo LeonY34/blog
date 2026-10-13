@@ -1203,7 +1203,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #bec985;
+    background: #9dd988;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2793,4 +2793,30 @@ header.header {
   .comments {
     padding: 10px 12px;
   }
+}
+.post-body .admonition {
+  margin: 1.5em 0;
+  padding: 0.8em 1.2em;
+  border-left: 4px solid #448aff;
+  border-radius: 4px;
+  background: rgba(68,138,255,0.06);
+}
+.post-body .admonition > :last-child {
+  margin-bottom: 0;
+}
+.post-body .admonition > .admonition-title {
+  margin: 0 0 0.6em;
+  color: #2962ff;
+  font-weight: bold;
+}
+.post-body .admonition .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.post-body .admonition.tip {
+  border-left-color: #00a896;
+  background: rgba(0,168,150,0.06);
+}
+.post-body .admonition.tip > .admonition-title {
+  color: #008577;
 }
